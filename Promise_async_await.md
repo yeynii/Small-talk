@@ -11,7 +11,7 @@
 
 - 특징
     
-    ![Untitled](Promise,%20a%20933d9/Untitled.png)
+    ![Untitled](https://github.com/yeynii/Small-talk/blob/main/%E1%84%8C%E1%85%A6%E1%84%82%E1%85%A5%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%90%E1%85%A5/Untitled.png?raw=true)
     
     - pending(대기), fulfilled(이행), rejected(거부) 상태를 가짐
         
