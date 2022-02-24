@@ -1,112 +1,4 @@
-## 
-
-- 참고사이트
-    
-    [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Generator](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Generator)
-    
-    [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
-    
-    [https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Iterators_and_Generators](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Iterators_and_Generators)
-    
-    [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-    
-
-## 제너레이터(Generator, 생성기)
-
-<aside>
-💡 Generator 객체는 generator function으로부터 반환된 값이며 반복자와 반복자 프로토콜을 준수합니다.
-**코드 블록의 실행을 일시 중지 (블로킹) 했다가 필요한 시점에 재개할 수 있는 특수한 함수**
-
-</aside>
-
-### 특징
-
-- iterator이고 iterable이다.
-    - Iterable
-        
-        Symbol.iterator 메서드가 있다.
-        
-        Symbol.iterator는 iterator를 반환해야 한다.
-        
-    - itrator
-        
-        next 메서드를 가진다.
-        
-        next 메서드는 value와 done속성을 가진 객체를 반환한다.
-        
-        작업이 끝나면 done은 true가 된다.
-        
-- 함수의 실행을 중간에 멈췄다가 재개할 수 있는 기능. 다른 작업을 하다가 다시 돌아와서 next() 해주면 진행이 멈췄던 부분부터 이어서 실행
-- 요청에 따라 그 산출된(yielded, yield 식으로 산출된) 값을 계산하고, 계산하기 비싼(힘든) 수열 또는 무한 수열이라도 효율적으로 나타내게함.
-- 값을 미리 만들어두지 않아 메모리 관리 측면에서 효율적임
-- break가 없는 while(true)도 사용가능함
-- 필요한 순간까지 계산을 미룰 수 있다
-
-### 문법
-
-```jsx
-function* gen() {
-	try {
-	  yield 1;
-	  yield 2;
-	  yield 3;
-	} catch (e) {
-		console.log(e);
-}
-
-var g = gen(); // "Generator { }"
-```
-
-![스크린샷 2022-02-06 오후 6.39.23.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/bc4994c4-0cf3-412e-8310-3593a1fa40f9/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-02-06_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_6.39.23.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220219%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220219T054855Z&X-Amz-Expires=86400&X-Amz-Signature=7fe7c4eac691b92dd72da9b8c96f17b6053b10a42ee0f941904f495ca81b8d4d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%25202022-02-06%2520%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%25206.39.23.png%22&x-id=GetObject)
-
-### 메서드
-
-- next()
-    
-    yield 표현을 통해 yield된 값을 반환합니다. 가장 가까운 yield문을 실행하고 종료됩니다.
-    
-    또한 생성기의 내부 상태를 수정하는 데 쓰일 수 있는 값을 받습니다. `next()`에 전달되는 값은 생성기가 중단된 마지막 `yield` 식의 결과로 처리됩니다.
-    
-    - 예제
-        
-        ```jsx
-        function* fibonacci(){
-          var fn1 = 0;
-          var fn2 = 1;
-          while (true){
-            var current = fn1;
-            fn1 = fn2;
-            fn2 = current + fn1;
-            var reset = yield current;
-            if (reset){
-                fn1 = 0;
-                fn2 = 1;
-            }
-          }
-        }
-        
-        var sequence = fibonacci();
-        console.log(sequence.next().value);     // 0
-        console.log(sequence.next().value);     // 1
-        console.log(sequence.next().value);     // 1
-        console.log(sequence.next().value);     // 2
-        console.log(sequence.next().value);     // 3
-        console.log(sequence.next().value);     // 5
-        console.log(sequence.next().value);     // 8
-        console.log(sequence.next(true).value); // 0
-        console.log(sequence.next().value);     // 1
-        console.log(sequence.next().value);     // 1
-        console.log(sequence.next().value);     // 2
-        ```
-        
-- return()
-    
-    주어진 값을 반환하고 생성기를 종료합니다.
-    
-- throw()
-    
-    생성기로 에러를 throw합니다.
-    
+# Promise, async await
 
 ## Promise
 
@@ -119,7 +11,7 @@ var g = gen(); // "Generator { }"
 
 - 특징
     
-    ![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/76f15858-3cef-4af3-ab70-aec059c91b8d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220219%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220219T054952Z&X-Amz-Expires=86400&X-Amz-Signature=011b37eebbe837006aa4405e29f3a598603a88c4f40b10e6974d41fab9050e4c&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+    ![Untitled](Promise,%20a%20933d9/Untitled.png)
     
     - pending(대기), fulfilled(이행), rejected(거부) 상태를 가짐
         
@@ -264,7 +156,16 @@ pickOnlyOne().then(console.log);
 ```
 
 ### Promise vs async/await
+
 |  | Promise | async/await |
 | --- | --- | --- |
 | 에러 핸들링 | .catch() | try-catch()문 |
 | 코드 가독성 | .then지옥 | 비동기 코드가 동기 코드처럼 읽히기 해주어 코드 흐름을 이해하기 쉬움 |
+
+- 참고사이트
+    
+    [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
+    
+    [https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Iterators_and_Generators](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Iterators_and_Generators)
+    
+    [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
